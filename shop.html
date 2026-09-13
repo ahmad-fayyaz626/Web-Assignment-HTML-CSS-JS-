@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ShopOnline — Shop</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header class="navbar">
+      <a href="index.html" class="logo">ShopOnline</a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="nav-right">
+        <a href="cart.html" class="cart-link"
+          >Cart <span class="cart-count" id="cart-count">0</span></a
+        >
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="container section">
+        <div class="section-heading">
+          <h2>Shop all products</h2>
+          <p>Filter by category to find what you need.</p>
+        </div>
+
+        <div class="filter-bar" id="filter-bar">
+          <button class="filter-btn active" data-category="all">All</button>
+          <!-- category buttons are added here by JavaScript -->
+        </div>
+
+        <div class="product-grid" id="shop-grid">
+          <p>Loading products…</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <h4 class="logo">ShopOnline</h4>
+            <p>
+              Everyday essentials, chosen well. Quality goods for how you
+              actually live.
+            </p>
+          </div>
+          <div>
+            <h4>Shop</h4>
+            <ul>
+              <li><a href="shop.html">All Products</a></li>
+              <li><a href="cart.html">Cart</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Company</h4>
+            <ul>
+              <li><a href="about.html">About</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          &copy; <span id="year"></span> ShopOnline. All rights reserved.
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/nav.js"></script>
+    <script src="js/products.js"></script>
+  </body>
+</html>

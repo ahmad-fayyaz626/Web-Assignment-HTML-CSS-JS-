@@ -84,3 +84,60 @@ if (bestSellersEl && featuredEl) {
       bestSellersEl.innerHTML = "<p>Could not load products right now.</p>";
     });
 }
+
+// ===== Shop page: full catalog with category filtering =====
+const shopGridEl = document.getElementById("shop-grid");
+const filterBarEl = document.getElementById("filter-bar");
+
+if (shopGridEl && filterBarEl) {
+  let allProducts = [];
+
+  // Draws the grid for a given list of products
+  function renderShopGrid(products) {
+    shopGridEl.innerHTML = products.map(renderProductCard).join("");
+    attachAddToCartListeners(shopGridEl, products);
+  }
+
+  // Filters allProducts by category and re-renders
+  function filterByCategory(category) {
+    if (category === "all") {
+      renderShopGrid(allProducts);
+    } else {
+      const filtered = allProducts.filter((p) => p.category === category);
+      renderShopGrid(filtered);
+    }
+  }
+
+  fetch(API_URL)
+    .then((res) => res.json())
+    .then((products) => {
+      allProducts = products;
+      renderShopGrid(allProducts);
+
+      // Build one filter button per unique category found in the data
+      const categories = [...new Set(products.map((p) => p.category))];
+
+      categories.forEach((category) => {
+        const btn = document.createElement("button");
+        btn.className = "filter-btn";
+        btn.dataset.category = category;
+        btn.textContent = category;
+        filterBarEl.appendChild(btn);
+      });
+
+      // One listener on the container handles clicks for every button (event delegation)
+      filterBarEl.addEventListener("click", (e) => {
+        if (!e.target.classList.contains("filter-btn")) return;
+
+        filterBarEl
+          .querySelectorAll(".filter-btn")
+          .forEach((b) => b.classList.remove("active"));
+        e.target.classList.add("active");
+
+        filterByCategory(e.target.dataset.category);
+      });
+    })
+    .catch(() => {
+      shopGridEl.innerHTML = "<p>Could not load products right now.</p>";
+    });
+}
