@@ -5,7 +5,7 @@ const API_URL = "https://fakestoreapi.com/products";
 function renderProductCard(product) {
   return `
     <div class="product-card">
-      <a href="shop.html">
+      <a href="product.html?id=${product.id}">
         <div class="product-image">
           <img src="${product.image}" alt="${product.title}">
         </div>
